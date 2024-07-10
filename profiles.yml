@@ -1,0 +1,37 @@
+sap-order-to-cash:
+  target: dev
+  outputs:
+    dev:
+
+      type: snowflake
+      account: "xm94285.eu-west-1"
+
+      user: "USER_ENGINEER_SAP"
+      password: "fastImpl@2520"
+
+
+      role: "ROLE_DATA_ENGINEER"
+      database: "SSI_SAP_TO_SNOW"
+      warehouse: MIGRATION_BIGQUERY
+      schema: REPORT
+      threads: 32
+      
+
+      
+      query_tag: "DBT_WORK"
+
+
+
+# sap-order-to-cash:
+#   outputs:
+#     dev:
+#       catalog: sap_order_to_cash
+#       host: adb-540853645307037.17.azuredatabricks.net
+#       http_path: /sql/1.0/warehouses/5d55c72f37174cec
+#       schema: default
+#       threads: 1
+#       token: "{{ env_var('DBT_DATABRICKS_TOKEN') }}"
+#       type: databricks
+#   target: dev
+
+
