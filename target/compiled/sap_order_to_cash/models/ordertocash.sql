@@ -201,21 +201,27 @@ with order_to_cash AS (
             ELSE 'NotCanceled'
         END AS CanceledOrder,
 
+
+
+
+
+
         CASE
             WHEN Deliveries.ActualGoodsMovementDate_WADAT_IST IS NOT NULL THEN
                 DATEDIFF(
                     'DAY',
-                    CAST(CONCAT(Deliveries.Date__proofOfDelivery___PODAT, ' ',
-                        SUBSTRING(Deliveries.ConfirmationTime_POTIM, 1, 2), ':',
-                        SUBSTRING(Deliveries.ConfirmationTime_POTIM, 3, 2), ':',
-                        SUBSTRING(Deliveries.ConfirmationTime_POTIM, 5, 2)) AS TIMESTAMP),
-                    CAST(CONCAT(SalesOrders.CreationDate_ERDAT, ' ',
-                        SUBSTRING(SalesOrders.CreationTime_ERZET, 1, 2), ':',
-                        SUBSTRING(SalesOrders.CreationTime_ERZET, 3, 2), ':',
-                        SUBSTRING(SalesOrders.CreationTime_ERZET, 5, 2)) AS TIMESTAMP)
+                    TO_TIMESTAMP(CONCAT(Deliveries.Date__proofOfDelivery___PODAT, ' ',
+                        LPAD(SUBSTRING(Deliveries.ConfirmationTime_POTIM, 1, 2), 2, '0'), ':',
+                        LPAD(SUBSTRING(Deliveries.ConfirmationTime_POTIM, 3, 2), 2, '0'), ':',
+                        LPAD(SUBSTRING(Deliveries.ConfirmationTime_POTIM, 5, 2), 2, '0'))),
+                    TO_TIMESTAMP(CONCAT(SalesOrders.CreationDate_ERDAT, ' ',
+                        LPAD(SUBSTRING(SalesOrders.CreationTime_ERZET, 1, 2), 2, '0'), ':',
+                        LPAD(SUBSTRING(SalesOrders.CreationTime_ERZET, 3, 2), 2, '0'), ':',
+                        LPAD(SUBSTRING(SalesOrders.CreationTime_ERZET, 5, 2), 2, '0')))
                 )
             ELSE NULL
         END AS OrderCycleTimeInDays,
+
 
         CASE
             WHEN Deliveries.Date__proofOfDelivery___PODAT <= Deliveries.DeliveryDate_LFDAT THEN 'DeliveredOnTime'
