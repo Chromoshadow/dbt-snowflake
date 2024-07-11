@@ -2,7 +2,7 @@ sap-order-to-cash:
   target: dev
   outputs:
     dev:
-
+ 
       type: snowflake
       account: "xm94285.eu-west-1"
 
@@ -14,13 +14,13 @@ sap-order-to-cash:
       warehouse: MIGRATION_BIGQUERY
       schema: REPORT
       threads: 32
-      
-
-      
+     
+ 
+     
       query_tag: "DBT_WORK"
-
-
-
+ 
+ 
+ 
 # sap-order-to-cash:
 #   outputs:
 #     dev:
@@ -32,5 +32,3 @@ sap-order-to-cash:
 #       token: "{{ env_var('DBT_DATABRICKS_TOKEN') }}"
 #       type: databricks
 #   target: dev
-
-

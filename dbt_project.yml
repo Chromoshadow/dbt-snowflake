@@ -20,6 +20,14 @@ macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 asset-paths: ["assets"]
 
+# on-run-start: [""]
+# on-run-end: [""]
+# dispatch: []
+# seeds:
+#   test3:
+#     +quote_columns: false
+# snapshots: []
+
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
@@ -38,4 +46,4 @@ models:
     materialized: table
     # Config indicated by + and applies to all files under models/example/
     views:
-      +materialized: view
+      +materialized: table
