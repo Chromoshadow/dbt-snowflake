@@ -6,8 +6,7 @@ sap-order-to-cash:
       type: snowflake
       account: "xm94285.eu-west-1"
 
-      user: "USER_ENGINEER_SAP"
-      password: "fastImpl@2520"
+
 
 
       role: "ROLE_DATA_ENGINEER"
