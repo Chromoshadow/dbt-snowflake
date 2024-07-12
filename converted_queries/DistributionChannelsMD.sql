@@ -1,0 +1,21 @@
+CREATE OR REPLACE TABLE SSI_SAP_TO_SNOW_CLONE.REPORT.DistributionChannelsMD
+(
+  Client_MANDT STRING,
+  DistributionChannel_VTWEG STRING,
+  Language_SPRAS STRING,
+  DistributionChannelName_VTEXT STRING
+);
+
+INSERT INTO SSI_SAP_TO_SNOW_CLONE.REPORT.DistributionChannelsMD
+SELECT
+        TVTW.MANDT AS Client_MANDT,
+        TVTW.VTWEG AS DistributionChannel_VTWEG,
+        TVTWT.SPRAS AS Language_SPRAS,
+        TVTWT.VTEXT AS DistributionChannelName_VTEXT
+    FROM
+        SSI_SAP_TO_SNOW_CLONE.RAW.TVTW AS TVTW
+    INNER JOIN
+        SSI_SAP_TO_SNOW_CLONE.RAW.TVTWT AS TVTWT
+        ON
+        TVTW.MANDT = TVTWT.MANDT
+        AND TVTW.VTWEG = TVTWT.VTWEG

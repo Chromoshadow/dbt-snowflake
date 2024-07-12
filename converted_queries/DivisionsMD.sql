@@ -1,0 +1,21 @@
+CREATE OR REPLACE TABLE SSI_SAP_TO_SNOW_CLONE.REPORT.DivisionsMD
+(
+  Client_MANDT STRING,
+  Division_SPART STRING,
+  LanguageKey_SPRAS STRING,
+  DivisionName_VTEXT STRING
+);
+
+INSERT INTO SSI_SAP_TO_SNOW_CLONE.REPORT.DivisionsMD
+SELECT
+        TSPA.mandt AS Client_MANDT,
+        TSPA.spart AS Division_SPART,
+        TSPAT.spras AS LanguageKey_SPRAS,
+        TSPAT.vtext AS DivisionName_VTEXT
+    FROM
+        SSI_SAP_TO_SNOW_CLONE.RAW.TSPA AS TSPA
+    LEFT JOIN
+        SSI_SAP_TO_SNOW_CLONE.RAW.TSPAT AS TSPAT
+    ON
+        TSPA.MANDT = TSPAT.MANDT
+        AND TSPA.SPART = TSPAT.SPART
